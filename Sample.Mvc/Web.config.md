@@ -1,24 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=152368
+  -->
 <configuration>
   <configSections>
-    <section name="entityFramework"
-      type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      requirePermission="false"/>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
   </configSections>
   <connectionStrings>
-    <add name="ApplicationServices"
-      connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true"
-      providerName="System.Data.SqlClient"/>
-    <add name="SampleEfModelFirstEntities"
-      connectionString="metadata=res://*/EfModelFirst.EfModelFirstContext.csdl|res://*/EfModelFirst.EfModelFirstContext.ssdl|res://*/EfModelFirst.EfModelFirstContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\v11.0;attachdbfilename=|DataDirectory|\SampleEfModelFirst.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;"
-      providerName="System.Data.EntityClient"/>
+    <add name="ApplicationServices" connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient"/>
+    <add name="SampleEfModelFirstEntities" connectionString="metadata=res://*/EfModelFirst.EfModelFirstContext.csdl|res://*/EfModelFirst.EfModelFirstContext.ssdl|res://*/EfModelFirst.EfModelFirstContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\v11.0;attachdbfilename=|DataDirectory|\SampleEfModelFirst.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"/>
   </connectionStrings>
   <appSettings>
-    <add key="webpages:Version" value="3.0.0.0"/>
+    <add key="webpages:Version" value="2.0.0.0"/>
     <add key="ClientValidationEnabled" value="true"/>
     <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
   </appSettings>
+  <!--
+    For a description of web.config changes for .NET 4.5 see http://go.microsoft.com/fwlink/?LinkId=235367.
 
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5" />
+      </system.Web>
+  -->
   <system.web>
     <compilation debug="true" targetFramework="4.5">
       <assemblies>
@@ -34,9 +41,7 @@
     <membership>
       <providers>
         <clear/>
-        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices"
-          enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false"
-          maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/"/>
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/"/>
       </providers>
     </membership>
     <profile>
@@ -69,39 +74,30 @@
   </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-      <dependentAssembly>
-        <assemblyIdentity name="System.Web.WebPages.Deployment" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
-        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="System.Web.Razor" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
-        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35"/>
-        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35"/>
-        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
-      </dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Web.WebPages.Deployment" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+				<bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Web.Razor" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+				<bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0"/>
+			</dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35"/>
-        <bindingRedirect oldVersion="1.0.0.0-5.2.3.0" newVersion="5.2.3.0"/>
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="4.0.0.0"/>
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
   <system.data>
     <DbProviderFactories>
-      <remove invariant="System.Data.SQLite.EF6"/>
-      <add name="SQLite Data Provider (Entity Framework 6)" invariant="System.Data.SQLite.EF6"
-        description=".NET Framework Data Provider for SQLite (Entity Framework 6)" type="System.Data.SQLite.EF6.SQLiteProviderFactory, System.Data.SQLite.EF6"/>
-      <remove invariant="System.Data.SQLite"/>
-      <add name="SQLite Data Provider" invariant="System.Data.SQLite" description=".NET Framework Data Provider for SQLite"
-        type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite"/>
-    </DbProviderFactories>
+      <remove invariant="System.Data.SqlServerCe.4.0"/>
+      <add name="Microsoft SQL Server Compact Data Provider 4.0" invariant="System.Data.SqlServerCe.4.0" description=".NET Framework Data Provider for Microsoft SQL Server Compact" type="System.Data.SqlServerCe.SqlCeProviderFactory, System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
+      
+      
+      
+      
+    <remove invariant="System.Data.SQLite.EF6"/><add name="SQLite Data Provider (Entity Framework 6)" invariant="System.Data.SQLite.EF6" description=".NET Framework Data Provider for SQLite (Entity Framework 6)" type="System.Data.SQLite.EF6.SQLiteProviderFactory, System.Data.SQLite.EF6"/><remove invariant="System.Data.SQLite"/><add name="SQLite Data Provider" invariant="System.Data.SQLite" description=".NET Framework Data Provider for SQLite" type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite"/></DbProviderFactories>
   </system.data>
-  <!--
   <system.serviceModel>
     <extensions>
       <behaviorExtensions>
@@ -117,11 +113,10 @@
       </webHttpBinding>
     </bindings>
     <client>
-      <endpoint address="http://localhost:54025/SampleService.svc" binding="webHttpBinding"
+      <endpoint address="http://localhost:54025/SampleService.svc" binding="webHttpBinding" 
                 bindingConfiguration="binding" contract="SampleService.ISampleService" name="http"/>
     </client>
   </system.serviceModel>
-  -->
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlCeConnectionFactory, EntityFramework">
       <parameters>

@@ -5,7 +5,7 @@ namespace StackExchange.Profiling.Tests
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.SqlServerCe;
+    // using System.Data.SqlServerCe;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -106,46 +106,8 @@ namespace StackExchange.Profiling.Tests
             sw.ElapsedTicks += milliseconds * UnitTestStopwatch.TicksPerMillisecond;
         }
 
-        /// <summary>
-        /// Creates a <c>SqlCe</c> file database named after <typeparamref name="T"/>, returning the connection string to the database.
-        /// </summary>
-        public static string CreateSqlCeDatabase<T>(bool deleteIfExists = false, IEnumerable<string> sqlToExecute = null)
-        {
-            var filename = GetSqlCeFileNameFor<T>();
-            var connString = GetSqlCeConnectionStringFor<T>();
-
-            if (File.Exists(filename))
-            {
-                if (deleteIfExists)
-                {
-                    File.Delete(filename);
-                }
-                else
-                {
-                    return connString;
-                }
-            }
-
-            var engine = new SqlCeEngine(connString);
-            engine.CreateDatabase();
-
-            if (sqlToExecute != null)
-            {
-                using (var conn = GetOpenSqlCeConnection<T>())
-                {
-                    foreach (var sql in sqlToExecute)
-                    {
-                        using (var cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = sql;
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-            }
-
-            return connString;
-        }
+        // public static string CreateSqlCeDatabase<T>(bool deleteIfExists = false, IEnumerable<string> sqlToExecute = null)
+        
 
         /// <summary>
         /// Returns an open connection to the <c>SqlCe</c> database identified by <typeparamref name="T"/>. This database should have been
@@ -153,11 +115,9 @@ namespace StackExchange.Profiling.Tests
         /// </summary>
         /// <typeparam name="T">the connection type</typeparam>
         /// <returns>the connection</returns>
-        public static SqlCeConnection GetOpenSqlCeConnection<T>()
+        public static object GetOpenSqlCeConnection<T>()
         {
-            var result = new SqlCeConnection(GetSqlCeConnectionStringFor<T>());
-            result.Open();
-            return result;
+            throw new NotImplementedException();
         }
 
         /// <summary>

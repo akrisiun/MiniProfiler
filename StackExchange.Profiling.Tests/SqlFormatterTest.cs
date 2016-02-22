@@ -18,7 +18,8 @@ namespace StackExchange.Profiling.Tests
         private SqlCommand _dbCommand;
         private static Dictionary<RuntimeTypeHandle, DbType> _dbTypeMap;
 
-        [TestFixtureSetUp]
+        // [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void TestFixtureSetup()
         {
             CreateDbTypeMap();

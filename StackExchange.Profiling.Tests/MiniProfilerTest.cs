@@ -2,6 +2,20 @@
 
 namespace StackExchange.Profiling.Tests
 {
+    using VS = Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [VS.TestClass]
+    public class VSTest
+    {
+        [VS.TestMethod]
+        public void VS1()
+        {
+            var t = new MiniProfilerTest();
+
+            t.Simple();
+        }
+    }
+
     [TestFixture]
     public class MiniProfilerTest : BaseTest
     {

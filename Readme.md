@@ -1,3 +1,30 @@
+### Recompile with MVC 5.2.3 and NUnit 3.0.1
+
+```
+Install-Package Mvc
+Install-Package NUnit
+Install-Package NUnit.Runners
+Install-Package NUnitTestAdapter 
+
+.nuget\nuget restore MiniProfiler.sln
+```
+
+Warning	1	Some NuGet packages were installed using a target framework different from the current target framework and may need to be reinstalled. 
+Visit http://docs.nuget.org/docs/workflows/reinstalling-packages for more information.  
+Packages affected: 
+```
+Install-Package EntityFramework
+Install-Package EntityFramework.SqlServerCompact
+Install-Package NUnit
+Install-Package System.Data.SQLite
+Install-Package System.Data.SQLite.Core
+Install-Package System.Data.SQLite.EF6
+Install-Package System.Data.SQLite.Linq
+
+<package id="System.Data.SQLite" version="1.0.97.0" targetFramework="net40" />
+<package id="System.Data.SQLite.Core" version="1.0.97.0" targetFramework="net40"/>
+```
+
 ##MiniProfiler for .NET##
 
 * See the home page at: [miniprofiler.com](http://miniprofiler.com) for more info on how to set things up.
