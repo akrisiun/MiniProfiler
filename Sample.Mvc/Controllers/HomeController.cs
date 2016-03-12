@@ -1,4 +1,4 @@
-﻿using SampleWeb.EfModelFirst;
+﻿//using SampleWeb.EfModelFirst;
 using SampleWeb.Helpers;
 using StackExchange.Profiling.Data;
 
@@ -10,7 +10,7 @@ namespace SampleWeb.Controllers
     using System.Threading;
     using System.Web.Mvc;
     using Dapper;
-    using EFCodeFirst;
+    //using EFCodeFirst;
     using StackExchange.Profiling;
 
     /// <summary>
@@ -240,41 +240,41 @@ namespace SampleWeb.Controllers
 
         public ActionResult EfModelFirst()
         {
-            int count;
+            //int count;
 
-            SampleEfModelFirstEntities context = null;
-            using (MiniProfiler.Current.Step("EF Model First Stuff"))
-            {
-                try
-                {
-                    using (MiniProfiler.Current.Step("Create Context"))
-                        context = new SampleEfModelFirstEntities(); 
+            //SampleEfModelFirstEntities context = null;
+            //using (MiniProfiler.Current.Step("EF Model First Stuff"))
+            //{
+            //    try
+            //    {
+            //        using (MiniProfiler.Current.Step("Create Context"))
+            //            context = new SampleEfModelFirstEntities(); 
 
-                    // this is not correct, as the count from this assignment is never actually used
-                    using (MiniProfiler.Current.Step("First count"))
-                        count = context.ModelPersons.Count();
+            //        // this is not correct, as the count from this assignment is never actually used
+            //        using (MiniProfiler.Current.Step("First count"))
+            //            count = context.ModelPersons.Count();
 
-                    using (MiniProfiler.Current.Step("Insertion"))
-                    {
-                        var p = new ModelPerson { Name = "sam", Id = new Random().Next(10000)};
-                        context.ModelPersons.Add(p);
-                        context.SaveChanges();
-                    }
+            //        using (MiniProfiler.Current.Step("Insertion"))
+            //        {
+            //            var p = new ModelPerson { Name = "sam", Id = new Random().Next(10000)};
+            //            context.ModelPersons.Add(p);
+            //            context.SaveChanges();
+            //        }
 
-                    // this count is actually used.
-                    using (MiniProfiler.Current.Step("Second count"))
-                        count = context.ModelPersons.Count();
-                }
-                finally
-                {
-                    if (context != null)
-                    {
-                        context.Dispose();
-                    }
-                }
-            }
+            //        // this count is actually used.
+            //        using (MiniProfiler.Current.Step("Second count"))
+            //            count = context.ModelPersons.Count();
+            //    }
+            //    finally
+            //    {
+            //        if (context != null)
+            //        {
+            //            context.Dispose();
+            //        }
+            //    }
+            //}
 
-            return Content("EF Model First complete - count: " + count);
+            return Content("EF Model First complete - count: " + 0); // + count);
         }
 
         /// <summary>
@@ -286,54 +286,55 @@ namespace SampleWeb.Controllers
             int count;
             int? newCount = null;
 
-            EFContext context = null;
+            //EFContext context = null;
             using (MiniProfiler.Current.Step("EF Stuff"))
             {
                 try
                 {
-                    using (MiniProfiler.Current.Step("Create Context"))
-                        context = new EFContext();
+                    //using (MiniProfiler.Current.Step("Create Context"))
+                    //    context = new EFContext();
 
-                    // this is not correct, as the count from this assignment is never actually used
-                    using (MiniProfiler.Current.Step("First count"))
-                        count = context.People.Count();
+                    //// this is not correct, as the count from this assignment is never actually used
+                    //using (MiniProfiler.Current.Step("First count"))
+                    //    count = context.People.Count();
 
-                    using (MiniProfiler.Current.Step("Insertion"))
-                    {
-                        var p = new Person { Name = "sam" };
-                        context.People.Add(p);
-                        context.SaveChanges();
-                    }
+                    //using (MiniProfiler.Current.Step("Insertion"))
+                    //{
+                    //    var p = new Person { Name = "sam" };
+                    //    context.People.Add(p);
+                    //    context.SaveChanges();
+                    //}
 
-                    // this count is actually used.
-                    using (MiniProfiler.Current.Step("Second count"))
-                        count = context.People.Count();
+                    //// this count is actually used.
+                    //using (MiniProfiler.Current.Step("Second count"))
+                    //    count = context.People.Count();
 
-                    const string sql = "Select count(*) from People";
-                    using (MiniProfiler.Current.Step("Get Count from SqlQuery Method - no sql recorded"))
-                    {
-                        newCount = context.Database.SqlQuery<int>(sql).Single();
-                    }
-                    using (MiniProfiler.Current.Step("Get Count using ProfiledConnection - sql recorded"))
-                    {
-                        using (var conn = new ProfiledDbConnection(context.Database.Connection, MiniProfiler.Current))
-                        {
-                            conn.Open();
-                            newCount = conn.Query<int>(sql).Single();
-                            conn.Close();
-                        }
-                    }
+                    //const string sql = "Select count(*) from People";
+                    //using (MiniProfiler.Current.Step("Get Count from SqlQuery Method - no sql recorded"))
+                    //{
+                    //    newCount = context.Database.SqlQuery<int>(sql).Single();
+                    //}
+                    //using (MiniProfiler.Current.Step("Get Count using ProfiledConnection - sql recorded"))
+                    //{
+                    //    using (var conn = new ProfiledDbConnection(context.Database.Connection, MiniProfiler.Current))
+                    //    {
+                    //        conn.Open();
+                    //        newCount = conn.Query<int>(sql).Single();
+                    //        conn.Close();
+                    //    }
+                    //}
 
                 }
                 finally
                 {
-                    if (context != null)
-                    {
-                        context.Dispose();
-                    }
+                    //if (context != null)
+                    //{
+                    //    context.Dispose();
+                    //}
                 }
             }
 
+            count = 0;
             return Content(string.Format("EF Code First complete - count: {0}, sqlQuery count {1}", count, newCount));
         }
 

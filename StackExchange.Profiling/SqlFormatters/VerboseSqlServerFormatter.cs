@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using System.Transactions;
+//using System.Transactions;
 
 namespace StackExchange.Profiling.SqlFormatters
 {
@@ -40,11 +40,11 @@ namespace StackExchange.Profiling.SqlFormatters
                 {
                     buffer.AppendLine("-- Command Transaction Iso Level: " + command.Transaction.IsolationLevel);
                 }
-				if (Transaction.Current != null)
-				{
-					// transactions issued by TransactionScope are not bound to the database command but exists globally
-					buffer.AppendLine("-- Transaction Scope Iso Level: " + Transaction.Current.IsolationLevel);
-				}
+                //if (Transaction.Current != null)
+                //{
+                //    // transactions issued by TransactionScope are not bound to the database command but exists globally
+                //    buffer.AppendLine("-- Transaction Scope Iso Level: " + Transaction.Current.IsolationLevel);
+                //}
                 buffer.AppendLine();
             }
 

@@ -76,6 +76,9 @@ where not exists (select 1 from MiniProfilers where Id = @Id)"; // this syntax w
 
             using (var conn = GetOpenConnection())
             {
+                if (conn == null)
+                    return;
+
                 conn.Execute(
                     sql,
                     new
@@ -363,7 +366,7 @@ WHERE NOT EXISTS (SELECT 1 FROM MiniProfilerClientTimings WHERE Id = @Id)";
         protected DbConnection GetOpenConnection()
         {
             var result = GetConnection();
-            if (result.State != System.Data.ConnectionState.Open)
+            if (result != null && result.State != System.Data.ConnectionState.Open)
                 result.Open();
             return result;
         }

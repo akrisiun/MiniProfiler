@@ -27,7 +27,7 @@
         {
             using (profiler.Step("GetOpenConnection"))
             {
-                DbConnection cnn = new System.Data.SQLite.SQLiteConnection(MvcApplication.ConnectionString);
+                DbConnection cnn = null; // new System.Data.SQLite.SQLiteConnection(MvcApplication.ConnectionString);
 
                 // to get profiling times, we have to wrap whatever connection we're using in a ProfiledDbConnection
                 // when MiniProfiler.Current is null, this connection will not record any database timings

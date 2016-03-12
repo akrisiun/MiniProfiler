@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{074BCD84-3E44-4140-9918-C09FCBEEC09F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StackExchange.Profiling.Mvc</RootNamespace>
+    <AssemblyName>MiniProfiler.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StackExchange.Profiling.Mvc\ClientTimingHelper.cs" />
+    <Compile Include="StackExchange.Profiling.Mvc\ProfilingActionFilter.cs" />
+    <Compile Include="StackExchange.Profiling.Mvc\ProfilingViewEngine.cs" />
+    <Compile Include="StackExchange.Profiling.Mvc\Properties\AssemblyInfo.cs" />
+    <Compile Include="StackExchange.Profiling.Mvc\WrappedView.cs" />
+    <Compile Include="StackExchange.Profiling\BaseProfilerProvider.cs" />
+    <Compile Include="StackExchange.Profiling\ClientTimingHelper.cs" />
+    <Compile Include="StackExchange.Profiling\ClientTimings.cs" />
+    <Compile Include="StackExchange.Profiling\CustomTiming.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ExecuteType.cs" />
+    <Compile Include="StackExchange.Profiling\Data\IDbProfiler.cs" />
+    <Compile Include="StackExchange.Profiling\Data\Link.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbCommand.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbConnection.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbDataReader.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbProviderFactory.cs" />
+    <Compile Include="StackExchange.Profiling\Data\ProfiledDbTransaction.cs" />
+    <Compile Include="StackExchange.Profiling\Data\SimpleProfiledCommand.cs" />
+    <Compile Include="StackExchange.Profiling\Data\SimpleProfiledConnection.cs" />
+    <Compile Include="StackExchange.Profiling\Data\SimpleProfiledDataReader.cs" />
+    <Compile Include="StackExchange.Profiling\Data\SimpleProfiledTransaction.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\Compression.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\ExtensionMethods.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\HaackFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\IStopwatch.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\SqlBuilder.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\SqlMapper.cs" />
+    <Compile Include="StackExchange.Profiling\Helpers\StackTraceSnippet.cs" />
+    <Compile Include="StackExchange.Profiling\IpAddressProvider.cs" />
+    <Compile Include="StackExchange.Profiling\IProfilerProvider.cs" />
+    <Compile Include="StackExchange.Profiling\IUserProvider.cs" />
+    <Compile Include="StackExchange.Profiling\MiniProfiler.cs" />
+    <Compile Include="StackExchange.Profiling\MiniProfiler.IDbProfiler.cs" />
+    <Compile Include="StackExchange.Profiling\MiniProfiler.Settings.cs" />
+    <Compile Include="StackExchange.Profiling\MiniProfilerExtensions.cs" />
+    <Compile Include="StackExchange.Profiling\MiniProfilerHandler.cs" />
+    <Compile Include="StackExchange.Profiling\ProfileLevel.cs" />
+    <Compile Include="StackExchange.Profiling\RenderPosition.cs" />
+    <Compile Include="StackExchange.Profiling\SingletonProfilerProvider.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\IAdvancedSqlFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\InlineFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\ISqlFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\SqlFormatterExtensions.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\SqlServerFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\SqlFormatters\VerboseSqlServerFormatter.cs" />
+    <Compile Include="StackExchange.Profiling\SqlProfiler.cs" />
+    <Compile Include="StackExchange.Profiling\SqlTiming.cs" />
+    <Compile Include="StackExchange.Profiling\SqlTimingParameter.cs" />
+    <Compile Include="StackExchange.Profiling\Storage\DatabaseStorageBase.cs" />
+    <Compile Include="StackExchange.Profiling\Storage\HttpRuntimeCacheStorage.cs" />
+    <Compile Include="StackExchange.Profiling\Storage\IStorage.cs" />
+    <Compile Include="StackExchange.Profiling\Storage\MultiStorageProvider.cs" />
+    <Compile Include="StackExchange.Profiling\Storage\SqlServerStorage.cs" />
+    <Compile Include="StackExchange.Profiling\Suppression.cs" />
+    <Compile Include="StackExchange.Profiling\Timing.cs" />
+    <Compile Include="StackExchange.Profiling\WebRequestProfilerProvider.cs" />
+    <Compile Include="StackExchange.Profiling\WebRequestProfilerProvider.Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StackExchange.Profiling\miniprofiler.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

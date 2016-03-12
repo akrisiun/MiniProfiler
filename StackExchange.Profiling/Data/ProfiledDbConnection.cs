@@ -149,14 +149,14 @@ namespace StackExchange.Profiling.Data
             _connection.Close();
         }
 
-        /// <summary>
-        /// enlist the transaction.
-        /// </summary>
-        /// <param name="transaction">The transaction.</param>
-        public override void EnlistTransaction(System.Transactions.Transaction transaction)
-        {
-            _connection.EnlistTransaction(transaction);
-        }
+        // <summary>
+        // enlist the transaction.
+        // </summary>
+        // <param name="transaction">The transaction.</param>
+        //public override void EnlistTransaction(System.Transactions.Transaction transaction)
+        //{
+        //    _connection.EnlistTransaction(transaction);
+        //}
 
         /// <summary>
         /// get the schema.

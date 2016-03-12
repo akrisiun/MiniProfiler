@@ -29,7 +29,7 @@ namespace SampleWeb.Helpers
         /// <returns>The Abstracted Connection</returns>
         protected override System.Data.Common.DbConnection GetConnection()
         {
-            return new System.Data.SQLite.SQLiteConnection(ConnectionString);
+            return null; // new System.Data.SQLite.SQLiteConnection(ConnectionString);
         }
 
         /// <summary>
@@ -45,16 +45,16 @@ namespace SampleWeb.Helpers
                 File.Delete(path);
             }
 
-            using (var cnn = new System.Data.SQLite.SQLiteConnection(MvcApplication.ConnectionString))
-            {
-                cnn.Open();
+            //using (var cnn = new System.Data.SQLite.SQLiteConnection(MvcApplication.ConnectionString))
+            //{
+            //    cnn.Open();
 
-                // we need some tiny mods to allow sqlite support 
-                foreach (var sql in TableCreationScripts.Union(extraTablesToCreate))
-                {
-                    cnn.Execute(sql);
-                }
-            }
+            //    // we need some tiny mods to allow sqlite support 
+            //    foreach (var sql in TableCreationScripts.Union(extraTablesToCreate))
+            //    {
+            //        cnn.Execute(sql);
+            //    }
+            //}
         }
 
         /// <summary>
