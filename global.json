@@ -1,0 +1,10 @@
+﻿{
+    "projects": [ 
+        "src",
+        "src/npoi",
+        "src/Sanitex.ReportLib" 
+    ],
+    "sdk": {
+        "version": "2.1.4"
+    }
+}
