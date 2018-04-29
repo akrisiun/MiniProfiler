@@ -6,6 +6,37 @@ Welcome to MiniProfiler for .NET, ASP.NET, ASP.NET Core, ASP.NET MVC and general
 
 The current major version of MiniProfiler is v4, which is in alpha pre-release while we test.
 
+## OSX fails (net461)
+
+```
+~/.nuget/packages/microsoft.net.compilers/2.4.0/tools/Microsoft.CSharp.Core.targets
+
+hare/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.<ExecuteInstantiatedTask>d__25.MoveNext() in 
+E:\A\_work\17\s\src\Build\BackEnd\Components\RequestBuilder\TaskBuilder.cs:line 787 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+~/.nuget/packages/microsoft.net.compilers/2.4.0/tools/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc.exe" exited with code 8. [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+
+Build FAILED.
+
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018: The "ResolveAssemblyReference" task failed unexpectedly. [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018: System.InvalidOperationException: PE image does not have metadata. [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at System.Reflection.PortableExecutable.PEReader.GetMetadataBlock() [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at System.Reflection.Metadata.PEReaderExtensions.GetMetadataReader(PEReader peReader,MetadataReaderOptions options, MetadataStringDecoder utf8Decoder) [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at System.Reflection.Metadata.PEReaderExtensions.GetMetadataReader(PEReader peReader)[~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Shared.AssemblyNameExtension.GetAssemblyNameEx(String path) in E:\A\_work\17\s\src\Shared\AssemblyNameExtension.cs:line 153 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Tasks.ReferenceTable.SetPrimaryAssemblyReferenceItem(ITaskItem referenceAssemblyName) in E:\A\_work\17\s\src\Tasks\AssemblyDependency\ReferenceTable.cs:line 624 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Tasks.ReferenceTable.SetPrimaryItems(ITaskItem[] referenceAssemblyFiles, ITaskItem[] referenceAssemblyNames, ArrayList exceptions) in E:\A\_work\17\s\src\Tasks\AssemblyDependency\ReferenceTable.cs:line 502 [~~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Tasks.ReferenceTable.ComputeClosure(DependentAssembly[] remappedAssembliesValue, ITaskItem[] referenceAssemblyFiles, ITaskItem[] referenceAssemblyNames, ArrayList exceptions) in E:\A\_work\17\s\src\Tasks\AssemblyDependency\ReferenceTable.cs:line 1634 
+[~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Tasks.ResolveAssemblyReference.Execute(FileExists fileExists, DirectoryExists directoryExists, GetDirectories getDirectories, GetAssemblyName getAssemblyName, GetAssemblyMetadata getAssemblyMetadata, GetLastWriteTime getLastWriteTime, GetAssemblyRuntimeVersion getRuntimeVersion, GetAssemblyPathInGac getAssemblyPathInGac, IsWinMDFile isWinMDFile, ReadMachineTypeFromPEHeader readMachineTypeFromPEHeader) in E:\A\_work\17\s\src\Tasks\AssemblyDependency\ResolveAssemblyReference.cs:line 2160 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.Tasks.ResolveAssemblyReference.Execute() in E:\A\_work\17\s\src\Tasks\AssemblyDependency\ResolveAssemblyReference.cs:line 2939 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.BackEnd.TaskExecutionHost.Microsoft.Build.BackEnd.ITaskExecutionHost.Execute() in E:\A\_work\17\s\src\Build\BackEnd\TaskExecutionHost\TaskExecutionHost.cs:line 631 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+/usr/local/share/dotnet/sdk/2.1.4/Microsoft.Common.CurrentVersion.targets(2041,5): warning MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.<ExecuteInstantiatedTask>d__25.MoveNext() in E:\A\_work\17\s\src\Build\BackEnd\Components\RequestBuilder\TaskBuilder.cs:line 787 [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+~/.nuget/packages/microsoft.net.compilers/2.4.0/tools/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc.exe" exited with code 8. [~/Sites/vendor/MiniProfiler/wwwroot/Samples.Mvc5.EFCore.csproj]
+    1 Warning(s)
+    1 Error(s)
+
+```
+
 #### Handy Links
 
 * Documentation

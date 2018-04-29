@@ -8,10 +8,14 @@ using System.Diagnostics;
 
 namespace StackExchange.Profiling.Data
 {
+    // #region Assembly netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+    // netstandard.dll
+    // dotnet build -f netstandard2.0
+
     /// <summary>
     /// Diagnostic listener for Microsoft.EntityFrameworkCore.* events
     /// </summary>
-    public class RelationalDiagnosticListener : IMiniProfilerDiagnosticListener
+    public class RelationalDiagnosticListener : IMiniProfilerDiagnosticListener, IObserver<KeyValuePair<string, object>>
     {
         // Maps to https://github.com/aspnet/EntityFramework/blob/f386095005e46ea3aa4d677e4439cdac113dbfb1/src/EFCore.Relational/Internal/RelationalDiagnostics.cs
         // See https://github.com/aspnet/EntityFramework/issues/7939 for info

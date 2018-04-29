@@ -20,5 +20,7 @@ tmp
 packages/**/*.*
 .vs/*
 docs/_site
+node_modules/
 BenchmarkDotNet.Artifacts
 samples/Samples.Mvc5/Properties/launchSettings.json
+package-lock.json

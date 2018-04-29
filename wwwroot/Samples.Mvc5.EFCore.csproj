@@ -5,17 +5,43 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Samples.Mvc5</RootNamespace>
     <AssemblyName>Samples.Mvc5</AssemblyName>
-    <TargetFramework>net462</TargetFramework>
-    <UseIISExpress>true</UseIISExpress>
+    <TargetFramework>net461</TargetFramework>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <AssemblyOriginatorKeyFile>..\..\miniprofiler.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <SignAssembly>true</SignAssembly>
+    <UseIISExpress>true</UseIISExpress>
     <PostBuildEvent>
       if not exist "roslyn" md "roslyn"
       xcopy /s /y /q "$(CscToolPath)\*.*" "roslyn"
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+      <RuntimeIdentifiers>win;osx.10-11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>      
+      <DefineConstants>TRACE;DEBUG;WEB;NOT_WINNT;NET451;NET461;MONO;UNIX</DefineConstants>
+      <ContinueOnError>true</ContinueOnError>
+      <UsingToolMicrosoftNetCompilers>true</UsingToolMicrosoftNetCompilers>
+      <ResolvedCodeAnalysisRuleSet>false</ResolvedCodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+      <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1" Version="1.0.1" />
+      <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
+      <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
+      <PackageReference Include="System.Security.Principal.Windows" Version="4.3.0" />
+  </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\MiniProfiler.EntityFrameworkCore\MiniProfiler.EntityFrameworkCore.csproj" />
+    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="1.0.8" />
+    <!-- 
+    <PackageReference Include="Microsoft.Net.Compilers" Version="2.8.0" />
+    -->
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+
+    <!-- <ProjectReference Include="..\src\MiniProfiler.EntityFrameworkCore\MiniProfiler.EntityFrameworkCore.csproj" /> -->
     <ProjectReference Include="..\src\MiniProfiler.Mvc5\MiniProfiler.Mvc5.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Providers.SqlServer\MiniProfiler.Providers.SqlServer.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
@@ -23,30 +49,32 @@
     
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
-    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="1.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="2.0.0" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
+<!--
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Xml" />
+-->    
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\**\*" />

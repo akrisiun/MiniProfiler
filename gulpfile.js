@@ -5,7 +5,6 @@
 var port = "8040";
 
 var gulp = require('gulp');
-// let {restore, build, test, pack, publish} 
 var restore = require('gulp-dotnet-cli').restore;
 var build = require('gulp-dotnet-cli').build;
 var cp = require('child-process-promise');
