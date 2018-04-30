@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler.Mvc5</AssemblyName>
     <Title>MiniProfiler for MVC 5</Title>
