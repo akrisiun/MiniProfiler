@@ -9,7 +9,9 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "Project",
+      "commandName": "Executable",
+      "executablePath": "c:\\Program Files\\dotnet\\dotnet.exe",
+      "commandLineArgs": "iis -port 8001",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

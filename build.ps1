@@ -10,21 +10,19 @@ Write-Host "  CreatePackages: $CreatePackages"
 Write-Host "  RunTests: $RunTests"
 Write-Host "  dotnet --version:" (dotnet --version)
 
+$RunTests = $false
+
 $packageOutputFolder = "$PSScriptRoot\.nupkgs"
 $projectsToBuild =
     'MiniProfiler.Shared',
     'MiniProfiler',
     'MiniProfiler.EF6',
     'MiniProfiler.EntityFrameworkCore',
-    'MiniProfiler.Mvc5',
-    'MiniProfiler.AspNetCore',
-    'MiniProfiler.AspNetCore.Mvc',
-    'MiniProfiler.Providers.MongoDB',
-    'MiniProfiler.Providers.MySql',
-    'MiniProfiler.Providers.Redis',
     'MiniProfiler.Providers.Sqlite',
     'MiniProfiler.Providers.SqlServer',
-    'MiniProfiler.Providers.SqlServerCe'
+    'MiniProfiler.Mvc5',
+    'MiniProfiler.AspNetCore',
+    'MiniProfiler.AspNetCore.Mvc'
 
 $testsToRun =
     'MiniProfiler.Tests',
@@ -36,7 +34,14 @@ if ($PullRequestNumber) {
 }
 
 Write-Host "Building solution..." -ForegroundColor "Magenta"
-dotnet build ".\MiniProfiler.sln" /p:CI=true
+# dotnet build ".\MiniProfiler.sln" /p:CI=true
+dotnet build --no-dependencies src\MiniProfiler.Shared\
+dotnet build --no-dependencies src\MiniProfiler\
+dotnet build --no-dependencies src\MiniProfiler.Mvc5
+dotnet build --no-dependencies src\MiniProfiler.EntityFrameworkCore\
+dotnet build --no-dependencies src\MiniProfiler.Providers.SqlServer
+dotnet build --no-dependencies wwwroot
+
 Write-Host "Done building." -ForegroundColor "Green"
 
 if ($RunTests) {

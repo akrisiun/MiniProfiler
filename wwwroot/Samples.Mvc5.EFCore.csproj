@@ -13,7 +13,14 @@
       if not exist "roslyn" md "roslyn"
       xcopy /s /y /q "$(CscToolPath)\*.*" "roslyn"
     </PostBuildEvent>
+    <WarningsNotAsErrors>true</WarningsNotAsErrors>
   </PropertyGroup>
+  <Target Name="CoreCompile">
+    <!-- 
+    Microsoft.codeanalysis.buildtasks.csc task could not be loaded from the assembly
+    Assembly with same name is already loaded Confirm that the <UsingTask> declaration is correct
+    -->
+  </Target>
   <ItemGroup>
     <ProjectReference Include="..\src\MiniProfiler.EntityFrameworkCore\MiniProfiler.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Mvc5\MiniProfiler.Mvc5.csproj" />
