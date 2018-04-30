@@ -22,3 +22,6 @@ packages/**/*.*
 docs/_site
 BenchmarkDotNet.Artifacts
 samples/Samples.Mvc5/Properties/launchSettings.json
+node_modules/
+yarn.lock
+*.log
