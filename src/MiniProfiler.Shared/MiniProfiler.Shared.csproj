@@ -6,6 +6,9 @@
     <Description>You shouldn't reference this - MiniProfiler's shared library for all frameworks</Description>
     <TargetFrameworks>net452;net461;netstandard2.0</TargetFrameworks>
     <NoWarn>1701;1702;1705;1591;</NoWarn>
+
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DocumentationFile></DocumentationFile>
@@ -55,9 +58,85 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Include="ui\includes.less" />
     <EmbeddedResource Include="ui\*.*" />
-    <EmbeddedResource Update="ui\includes.css" DependentUpon="includes.less" />
-    <EmbeddedResource Update="ui\includes.min.css" DependentUpon="includes.css" />
+    <Compile Include="ClientTiming.cs" />
+    <Compile Include="ClientTimingHelper.cs" />
+    <Compile Include="ClientTimings.cs" />
+    <Compile Include="CustomTiming.cs" />
+    <Compile Include="Data\ExecuteType.cs" />
+    <Compile Include="Data\IDbProfiler.cs" />
+    <Compile Include="Data\Link.cs" />
+    <Compile Include="Data\ProfiledDbCommand.cs" />
+    <Compile Include="Data\ProfiledDbCommand.ICloneable.cs" />
+    <Compile Include="Data\ProfiledDbConnection.cs" />
+    <Compile Include="Data\ProfiledDbDataAdapter.cs" />
+    <Compile Include="Data\ProfiledDbDataReader.cs" />
+    <Compile Include="Data\ProfiledDbProviderFactory.cs" />
+    <Compile Include="Data\ProfiledDbTransaction.cs" />
+    <Compile Include="Data\SimpleProfiledCommand.cs" />
+    <Compile Include="Data\SimpleProfiledConnection.cs" />
+    <Compile Include="Data\SimpleProfiledDataReader.cs" />
+    <Compile Include="Data\SimpleProfiledTransaction.cs" />
+    <Compile Include="DiagnosticInitializer.cs" />
+    <Compile Include="Helpers\IStopwatch.cs" />
+    <Compile Include="Helpers\ProfilerSortedKey.cs" />
+    <Compile Include="Helpers\StackTraceSnippet.cs" />
+    <Compile Include="IMiniProfilerBuilder.cs" />
+    <Compile Include="Internal\ExtensionMethods.cs" />
+    <Compile Include="Internal\IDataParameterExtensions.cs" />
+    <Compile Include="Internal\IDbCommandExtensions.cs" />
+    <Compile Include="Internal\IMiniProfilerDiagnosticListener.cs" />
+    <Compile Include="Internal\MiniProfilerBaseOptions.cs" />
+    <Compile Include="Internal\MiniProfilerBaseOptionsExtensions.cs" />
+    <Compile Include="Internal\MiniProfilerExtensions.cs" />
+    <Compile Include="Internal\StopwatchWrapper.cs" />
+    <Compile Include="Internal\StringBuilderCache.cs" />
+    <Compile Include="MiniProfiler.cs" />
+    <Compile Include="MiniProfiler.IDbProfiler.cs" />
+    <Compile Include="MiniProfiler.Options.cs" />
+    <Compile Include="MiniProfiler.ServerTiming.cs" />
+    <Compile Include="MiniProfilerExtensions.cs" />
+    <Compile Include="MiniProfilerOptionsExtensions.cs" />
+    <Compile Include="ProfileProviders\DefaultProfilerProvider.cs" />
+    <Compile Include="ProfileProviders\IAsyncProfilerProvider.cs" />
+    <Compile Include="ProfileProviders\SingletonProfilerProvider.cs" />
+    <Compile Include="RenderPosition.cs" />
+    <Compile Include="SqlFormatters\IAdvancedSqlFormatter.cs" />
+    <Compile Include="SqlFormatters\InlineFormatter.cs" />
+    <Compile Include="SqlFormatters\ISqlFormatter.cs" />
+    <Compile Include="SqlFormatters\SqlFormatterExtensions.cs" />
+    <Compile Include="SqlFormatters\SqlServerFormatter.cs" />
+    <Compile Include="SqlFormatters\VerboseSqlServerFormatter.cs" />
+    <Compile Include="SqlTimingParameter.cs" />
+    <Compile Include="Storage\DatabaseStorageBase.cs" />
+    <Compile Include="Storage\IAsyncStorage.cs" />
+    <Compile Include="Storage\MultiStorageProvider.cs" />
+    <Compile Include="Storage\NullStorage.cs" />
+    <Compile Include="Suppression.cs" />
+    <Compile Include="Timing.cs" />
+    <!--
+    <EmbeddedResource Include="ui\includes.css" />
+    <EmbeddedResource Include="ui\includes.js" />
+    <EmbeddedResource Include="ui\includes.less" />
+    <EmbeddedResource Include="ui\includes.min.css" />
+    <EmbeddedResource Include="ui\includes.tmpl" />
+    <EmbeddedResource Include="ui\README.md" />
+    -->
+    <None Include="ui\includes.css" />
+    <None Include="ui\includes.js" />
+    <None Include="ui\includes.less" />
+    <None Include="ui\includes.min.css" />
+    <None Include="ui\includes.tmpl" />
+    <None Include="ui\README.md" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Internal\" />
+    <Folder Include="ProfileProviders\" />
+    <Folder Include="SqlFormatters\" />
+    <Folder Include="Storage\" />
+    <Folder Include="ui\" />
   </ItemGroup>
 </Project>

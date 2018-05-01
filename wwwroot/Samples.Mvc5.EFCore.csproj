@@ -5,15 +5,20 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Samples.Mvc5</RootNamespace>
     <AssemblyName>Samples.Mvc5</AssemblyName>
-    <TargetFrameworks>net452;net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
+    <!--<TargetFrameworks>net452;net461</TargetFrameworks>-->
     <UseIISExpress>true</UseIISExpress>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
     <AssemblyOriginatorKeyFile>..\miniprofiler.snk</AssemblyOriginatorKeyFile>
     <ContinueOnError>true</ContinueOnError>
-  </PropertyGroup>
+  
+</PropertyGroup>
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <SignAssembly>true</SignAssembly>
     <UseIISExpress>true</UseIISExpress>
@@ -43,8 +48,8 @@
   <ItemGroup>
     <!-- 
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="1.0.8" />
-    -->
     <PackageReference Include="Microsoft.Net.Compilers" Version="2.8.0" />
+    -->
     <ProjectReference Include="..\src\MiniProfiler.Mvc5\MiniProfiler.Mvc5.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Providers.SqlServer\MiniProfiler.Providers.SqlServer.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
@@ -94,8 +99,34 @@
   <ItemGroup>
     <Content Include="Content\**\*" />
     <Content Include="Scripts\**\*" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="MiniProfilerMvc5.cs" />
+    <Compile Include="Models\EFContext.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Start.cs" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <None Include="Content\bootstrap.css" />
+    <None Include="Content\bootstrap.min.css" />
+    <None Include="Content\Site.css" />
+    <None Include="Scripts\bootstrap.js" />
+    <None Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\_references.js" />
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

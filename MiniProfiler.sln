@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.26823.1
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Mvc5.EFCore", "wwwroot\Samples.Mvc5.EFCore.csproj", "{DB955DC3-7CA3-4D65-B246-89628737D854}"
 EndProject
@@ -13,6 +13,16 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProfiler.Providers.SqlServer", "src\MiniProfiler.Providers.SqlServer\MiniProfiler.Providers.SqlServer.csproj", "{58D6DF73-60D2-4C0C-B724-5067B3442F54}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProfiler.Mvc5", "src\MiniProfiler.Mvc5\MiniProfiler.Mvc5.csproj", "{E9A4571C-C7B5-48F2-B40C-96AC0E497B57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProfiler.EFCore", "src\MiniProfiler.EntityFrameworkCore\MiniProfiler.EFCore.csproj", "{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6FB7D14-E723-4426-A13A-B00D5E45B446}"
+	ProjectSection(SolutionItems) = preProject
+		build.ps1 = build.ps1
+		src\Directory.build.props = src\Directory.build.props
+		global.json = global.json
+		gulpfile.js = gulpfile.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +94,18 @@ Global
 		{E9A4571C-C7B5-48F2-B40C-96AC0E497B57}.Release|x64.Build.0 = Release|Any CPU
 		{E9A4571C-C7B5-48F2-B40C-96AC0E497B57}.Release|x86.ActiveCfg = Release|Any CPU
 		{E9A4571C-C7B5-48F2-B40C-96AC0E497B57}.Release|x86.Build.0 = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|x64.Build.0 = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +115,7 @@ Global
 		{4C459F6E-9594-4910-845F-EAEDC702FF36} = {99343E1A-53DF-4BB4-895B-462D7C49DB38}
 		{58D6DF73-60D2-4C0C-B724-5067B3442F54} = {99343E1A-53DF-4BB4-895B-462D7C49DB38}
 		{E9A4571C-C7B5-48F2-B40C-96AC0E497B57} = {99343E1A-53DF-4BB4-895B-462D7C49DB38}
+		{4EC8ECA3-0BAD-482B-A898-E2750364C0A7} = {99343E1A-53DF-4BB4-895B-462D7C49DB38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DC09FA5-F9E2-4FE8-A1B4-6A092AC8179D}

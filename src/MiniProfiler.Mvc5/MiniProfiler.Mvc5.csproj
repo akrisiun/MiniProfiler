@@ -8,12 +8,22 @@
     <TargetFrameworks>net452;net461</TargetFrameworks>
     <NoWarn>1701;1702;1705;1591;1587</NoWarn>
     <DocumentationFile />
+
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net451|AnyCPU'">
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <RootNamespace>StackExchange.Profiling.Mvc</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ClientTimingHelper.cs" />
+    <Compile Include="MiniProfilerMvc5.cs" />
+    <Compile Include="ProfilingActionFilter.cs" />
+    <Compile Include="ProfilingViewEngine.cs" />
+    <Compile Include="WrappedView.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniProfiler\MiniProfiler.csproj" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
