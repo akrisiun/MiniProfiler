@@ -4,6 +4,11 @@ using System.Threading.Tasks;
 
 namespace StackExchange.Profiling
 {
+    public class AsyncLocal<T>
+    {
+        public T Value { get; set; }
+    }
+
     /// <summary>
     /// Default profile provider, gracefully handles async transitions.
     /// To use, override the <see cref="Start(string, MiniProfilerBaseOptions)"/>, <see cref="Stopped(MiniProfiler, bool)"/> and <see cref="CurrentProfiler"/>
@@ -44,9 +49,12 @@ namespace StackExchange.Profiling
         public virtual void Stopped(MiniProfiler profiler, bool discardResults)
         {
             if (profiler == null) return;
-            if (discardResults && CurrentProfiler == profiler)
+            if (discardResults)
             {
-                CurrentProfiler = null;
+                if (CurrentProfiler == profiler)
+                {
+                    CurrentProfiler = null;
+                }
                 return;
             }
             Save(profiler);
@@ -63,9 +71,12 @@ namespace StackExchange.Profiling
         public virtual async Task StoppedAsync(MiniProfiler profiler, bool discardResults)
         {
             if (profiler == null) return;
-            if (discardResults && CurrentProfiler == profiler)
+            if (discardResults)
             {
-                CurrentProfiler = null;
+                if (CurrentProfiler == profiler)
+                {
+                    CurrentProfiler = null;
+                }
                 return;
             }
             await SaveAsync(profiler).ConfigureAwait(false);

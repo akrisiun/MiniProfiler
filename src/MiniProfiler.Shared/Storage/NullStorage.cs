@@ -3,9 +3,44 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StackExchange.Profiling.Internal;
+using System.Threading;
 
 namespace StackExchange.Profiling.Storage
 {
+    public static class TaskEx
+    {
+        private static System.Threading.Tasks.Task s_completedTask;
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+
+        public static Task CreateCompletedTask()
+        {
+            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            tcs.TrySetResult(null);
+            return tcs.Task;
+        }
+
+#if !NET451
+        public static System.Threading.Tasks.Task CompletedTask => System.Threading.Tasks.Task.CompletedTask;
+#else 
+        public static System.Threading.Tasks.Task CompletedTask
+        {
+            get
+            {
+                var completedTask = s_completedTask;
+                if (completedTask == null)
+                    s_completedTask = completedTask = CreateCompletedTask(); // new Task(false, (TaskCreationOptions)InternalTaskOptions.DoNotDispose, 
+                    // default(CancellationToken));   // benign initialization ----
+
+                return completedTask;
+            }
+        }
+#endif
+
+    }
+
+
     /// <summary>
     /// Empty storage no-nothing provider for doing nothing at all. Super efficient.
     /// </summary>
@@ -44,7 +79,7 @@ namespace StackExchange.Profiling.Storage
         /// Saves nothing.
         /// </summary>
         /// <param name="profiler">No one cares.</param>
-        public Task SaveAsync(MiniProfiler profiler) => Task.CompletedTask;
+        public Task SaveAsync(MiniProfiler profiler) => TaskEx.CompletedTask;
         /// <summary>
         /// Returns null.
         /// </summary>
@@ -66,7 +101,7 @@ namespace StackExchange.Profiling.Storage
         /// </summary>
         /// <param name="user">No one cares.</param>
         /// <param name="id">No one cares.</param>
-        public Task SetUnviewedAsync(string user, Guid id) => Task.CompletedTask;
+        public Task SetUnviewedAsync(string user, Guid id) => TaskEx.CompletedTask;
         /// <summary>
         /// Sets nothing.
         /// </summary>
@@ -78,7 +113,7 @@ namespace StackExchange.Profiling.Storage
         /// </summary>
         /// <param name="user">No one cares.</param>
         /// <param name="id">No one cares.</param>
-        public Task SetViewedAsync(string user, Guid id) => Task.CompletedTask;
+        public Task SetViewedAsync(string user, Guid id) => TaskEx.CompletedTask;
         /// <summary>
         /// Gets nothing.
         /// </summary>

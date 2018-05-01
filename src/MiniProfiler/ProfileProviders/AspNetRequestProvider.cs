@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Routing;
 using StackExchange.Profiling.Internal;
+// using StackExchange.Profiling.Internal;
 
 namespace StackExchange.Profiling
 {
@@ -65,7 +68,8 @@ namespace StackExchange.Profiling
             // If the application is hosted in the root directory (appPath.Length == 1), return entire path
             // Otherwise, return the substring after the path (e.g. a virtual directory)
             // This is for paths like /virtual/path.axd/more/path/omg
-            var relativePath = path.Length < request.ApplicationPath.Length || request.ApplicationPath.Length == 1 ? path : path.Substring(request.ApplicationPath.Length);
+            var relativePath = path.Length < request.ApplicationPath.Length
+                || request.ApplicationPath.Length == 1 ? path : path.Substring(request.ApplicationPath.Length);
 
             foreach (var ignored in options.IgnoredPaths)
             {
@@ -100,9 +104,12 @@ namespace StackExchange.Profiling
             var context = HttpContext.Current;
             if (context == null || profiler == null) return;
 
-            if (discardResults && CurrentProfiler == profiler)
+            if (discardResults)
             {
-                CurrentProfiler = null;
+                if (CurrentProfiler == profiler)
+                {
+                    CurrentProfiler = null;
+                }
                 return;
             }
 
@@ -110,6 +117,7 @@ namespace StackExchange.Profiling
             EnsureName(profiler, context);
             Save(profiler);
 
+#if !NET451
             try
             {
                 var ids = profiler.Options.ExpireAndGetUnviewed(profiler.User);
@@ -120,6 +128,10 @@ namespace StackExchange.Profiling
                 }
             }
             catch { /* headers blew up */ }
+#else 
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         /// <summary>
@@ -135,9 +147,12 @@ namespace StackExchange.Profiling
             var context = HttpContext.Current;
             if (context == null || profiler == null) return;
 
-            if (discardResults && CurrentProfiler == profiler)
+            if (discardResults)
             {
-                CurrentProfiler = null;
+                if (CurrentProfiler == profiler)
+                {
+                    CurrentProfiler = null;
+                }
                 return;
             }
 
@@ -145,6 +160,7 @@ namespace StackExchange.Profiling
             EnsureName(profiler, context);
             await SaveAsync(profiler).ConfigureAwait(false);
 
+#if !NET451
             try
             {
                 var ids = await profiler.Options.ExpireAndGetUnviewedAsync(profiler.User).ConfigureAwait(false);
@@ -155,6 +171,7 @@ namespace StackExchange.Profiling
                 }
             }
             catch { /* headers blew up */ }
+#endif
         }
 
         /// <summary>
@@ -165,12 +182,13 @@ namespace StackExchange.Profiling
         private static void EnsureName(MiniProfiler profiler, HttpContext context)
         {
             string url = null;
-            string GetUrl() => url ?? (url = StringBuilderCache.Get()
+            string GetUrl() => url ?? (url = System.Text.StringBuilderCache.Get() // Acquire() // 
                                     .Append(context.Request.Url.Scheme)
                                     .Append("://")
                                     .Append(context.Request.Url.Host)
                                     .Append(context.Request.Url.PathAndQuery)
                                     .ToStringRecycle());
+#if !NET451
 
             // also set the profiler name to Controller/Action or /url
             if (profiler.Name.IsNullOrWhiteSpace())
@@ -196,11 +214,93 @@ namespace StackExchange.Profiling
                         profiler.Name = profiler.Name.Remove(50);
                 }
             }
+#endif
 
             if (profiler.Root != null && profiler.Root.Name == null)
             {
                 profiler.Root.Name = GetUrl();
             }
+        }
+    }
+}
+
+namespace System.Text
+{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+    public static class StringNet451
+    {
+        [Diagnostics.Contracts.Pure]
+
+        internal static bool IsNullOrWhiteSpace(this String value)
+        {
+            if (value == null) return true;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!Char.IsWhiteSpace(value[i])) return false;
+            }
+
+            return true;
+        }
+
+        internal static string ToStringRecycle(this StringBuilder builder)
+        {
+            var s = builder.ToString();
+            Recycle(builder);
+            return s;
+        }
+
+        public static void Recycle(StringBuilder builder)
+        {
+            if (builder == null) return;
+            if (_perThread == null)
+            {
+                _perThread = builder;
+            }
+            else
+            {
+                Interlocked.CompareExchange(ref _shared, builder, null);
+            }
+        }
+
+        // one per thread
+        [ThreadStatic]
+        private static StringBuilder _perThread;
+
+        // and one secondary that is shared between threads
+        private static StringBuilder _shared;
+        public const int DefaultCapacity = 0x10;
+    }
+
+    internal class StringBuilderCache
+    {
+        const int MAX_BUILDER_SIZE = 1024;
+        public const int DefaultCapacity = StringNet451.DefaultCapacity; // StringBuilder.DefaultCapacity
+
+        [ThreadStatic]
+        private static StringBuilder CachedInstance;
+
+        // Acquire
+        // https://referencesource.microsoft.com/#mscorlib/system/text/stringbuildercache.cs,9ce41f3defeef16f
+        public static StringBuilder Get(int capacity = DefaultCapacity) 
+        {
+            if (capacity <= MAX_BUILDER_SIZE)
+            {
+                StringBuilder sb = CachedInstance;
+                if (sb != null)
+                {
+                    // Avoid stringbuilder block fragmentation by getting a new StringBuilder
+                    // when the requested size is larger than the current capacity
+                    if (capacity <= sb.Capacity)
+                    {
+                        CachedInstance = null;
+                        sb.Clear();
+                        return sb;
+                    }
+                }
+            }
+            return new StringBuilder(capacity);
         }
     }
 }

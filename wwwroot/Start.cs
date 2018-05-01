@@ -13,24 +13,15 @@ namespace Samples.Mvc5
     {
         protected void Application_Start()
         {
-            RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles(BundleTable.Bundles);
 
-            // InitProfilerSettings
-            MiniProfiler.Configure(new MiniProfilerOptions
-                { RouteBasePath = "~/profiler" }
-                .AddViewPofiling()    // Add MVC view profiling
-                .AddEntityFramework() // Add EF Core
-            );
+            // RegisterGlobalFilters(GlobalFilters.Filters);
+			
+			// StackExchange.Profiling.Mvc.MiniProfilerMvc5
+            MiniProfilerMvc5.Application_Start();
         }
-
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-            filters.Add(new ProfilingActionFilter());
-        }
-
+        
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -61,18 +52,9 @@ namespace Samples.Mvc5
         /// </summary>
         protected void Application_BeginRequest()
         {
-            MiniProfiler profiler = null;
+            MiniProfiler profiler = MiniProfilerMvc5.Application_BeginRequest(Request);
 
-            // might want to decide here (or maybe inside the action) whether you want
-            // to profile this request - for example, using an "IsSystemAdmin" flag against
-            // the user, or similar; this could also all be done in action filters, but this
-            // is simple and practical; just return null for most users. For our test, we'll
-            // profile only for local requests (seems reasonable)
-            if (Request.IsLocal)
-            {
-                profiler = MiniProfiler.StartNew();
-            }
-
+            if (profiler != null)
             using (profiler.Step("Application_BeginRequest"))
             {
                 // you can start profiling your code immediately
@@ -84,7 +66,7 @@ namespace Samples.Mvc5
         /// </summary>
         protected void Application_EndRequest()
         {
-            MiniProfiler.Current?.Stop();
+            MiniProfilerMvc5.Application_EndRequest(); // .Current?.Stop();
         }
 
     }

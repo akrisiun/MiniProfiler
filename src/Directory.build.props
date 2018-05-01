@@ -8,7 +8,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\miniprofiler.snk</AssemblyOriginatorKeyFile>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
 
     <PackageId>$(AssemblyName)</PackageId>
     <PackageLicenseUrl>https://github.com/MiniProfiler/dotnet/blob/master/LICENSE.txt</PackageLicenseUrl>
@@ -19,13 +19,19 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>embedded</DebugType>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <IncludeSymbols>false</IncludeSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <AssemblyOriginatorKeyFile>..\..\miniprofiler.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
+    <!--
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.1.17" PrivateAssets="all" />
     <PackageReference Include="SourceLink.Create.GitHub" Version="2.5.0" PrivateAssets="All" /> 
     <DotNetCliToolReference Include="dotnet-sourcelink" Version="2.5.0" />
     <DotNetCliToolReference Include="dotnet-sourcelink-git" Version="2.5.0" />
+    -->
   </ItemGroup>
 </Project>

@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="Windows-1252"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler</AssemblyName>
     <Title>MiniProfiler</Title>
     <Description>Lightweight mini-profiler, designed for ASP.NET (including MVC) (non-.NET Core) websites</Description>
     <Authors>Marc Gravell, Jarrod Dixon, Yaakov Ellis, Nick Craver</Authors>
     <PackageTags>ASP.NET;SQL;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>net451;net461</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net451|AnyCPU'">
+    <DocumentationFile />
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
+    
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

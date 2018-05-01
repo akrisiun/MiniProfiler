@@ -1,4 +1,5 @@
 ﻿using StackExchange.Profiling.Internal;
+using StackExchange.Profiling.Storage;
 using System.Threading.Tasks;
 
 namespace StackExchange.Profiling
@@ -51,7 +52,7 @@ namespace StackExchange.Profiling
         public Task StoppedAsync(MiniProfiler profiler, bool discardResults)
         {
             Stopped(profiler, discardResults);
-            return Task.CompletedTask;
+            return TaskEx.CompletedTask;
         }
     }
 }

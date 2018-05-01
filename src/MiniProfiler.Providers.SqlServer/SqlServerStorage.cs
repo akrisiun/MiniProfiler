@@ -31,6 +31,8 @@ namespace StackExchange.Profiling.Storage
         public SqlServerStorage(string connectionString, string profilersTable, string timingsTable, string clientTimingsTable)
             : base(connectionString, profilersTable, timingsTable, clientTimingsTable) { }
 
+        #region Properties
+
         private string _saveSql;
         private string SaveSql => _saveSql ?? (_saveSql = $@"
 INSERT INTO {MiniProfilersTable}
@@ -51,6 +53,8 @@ INSERT INTO {MiniProfilerClientTimingsTable}
             (Id, MiniProfilerId, Name, Start, Duration)
 SELECT      @Id, @MiniProfilerId, @Name, @Start, @Duration
 WHERE NOT EXISTS (SELECT 1 FROM {MiniProfilerClientTimingsTable} WHERE Id = @Id)");
+
+        #endregion
 
         /// <summary>
         /// Stores to <c>dbo.MiniProfilers</c> under its <see cref="MiniProfiler.Id"/>;

@@ -187,7 +187,11 @@ namespace StackExchange.Profiling.Storage
         public Task SaveAsync(MiniProfiler profiler)
         {
             Save(profiler);
+#if !NET451
             return Task.CompletedTask;
+#else
+            return TaskEx.CompletedTask;
+#endif
         }
 
         /// <summary>
@@ -217,7 +221,12 @@ namespace StackExchange.Profiling.Storage
         public Task SetUnviewedAsync(string user, Guid id)
         {
             SetUnviewed(user, id);
+
+#if !NET451
             return Task.CompletedTask;
+#else
+            return TaskEx.CompletedTask;
+#endif
         }
 
         /// <summary>
@@ -242,7 +251,12 @@ namespace StackExchange.Profiling.Storage
         public Task SetViewedAsync(string user, Guid id)
         {
             SetViewed(user, id);
+
+#if !NET451
             return Task.CompletedTask;
+#else
+            return TaskEx.CompletedTask;
+#endif
         }
     }
 }

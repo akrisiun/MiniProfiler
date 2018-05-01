@@ -1,18 +1,24 @@
-<?xml version="1.0" encoding="Windows-1252"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler.EntityFrameworkCore</AssemblyName>
     <Title>MiniProfiler for Entity Framework Core</Title>
     <Description>MiniProfiler: Integration for Entity Framework Core</Description>
     <Authors>Nick Craver</Authors>
     <PackageTags>Entity Framework;Entity Framework Core;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <RootNamespace>StackExchange.Profiling.Data</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="1.1.5" />
+	<!--
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.5" />
+	-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
   </ItemGroup>
 </Project>

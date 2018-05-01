@@ -10,7 +10,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "Executable",
-      "executablePath": "c:\\Program Files\\dotnet\\dotnet.exe",
+      "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
       "commandLineArgs": "iis -port 8001",
       "launchBrowser": true,
       "environmentVariables": {
@@ -18,7 +18,9 @@
       }
     },
     "Samples.Mvc5": {
-      "commandName": "Project",
+      "commandName": "Executable",
+      "executablePath": "c:\\Program Files\\dotnet\\dotnet.exe",
+      "commandLineArgs": "iis -port 8000",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
