@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler.Providers.SqlServer</AssemblyName>
     <Title>MiniProfiler.Providers.SqlServer</Title>
     <Description>MiniProfiler: Profiler storage for SQL Server</Description>
     <Authors>Marc Gravell, Jarrod Dixon, Yaakov Ellis, Nick Craver</Authors>
     <PackageTags>SQL;SQL Server;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>net451;net461</TargetFrameworks>
+    <TargetFrameworks>net451;net461;netstandard2.0</TargetFrameworks>
     <!--netstandard1.5-->
   </PropertyGroup>
   <ItemGroup>
