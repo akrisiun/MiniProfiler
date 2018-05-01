@@ -1,9 +1,11 @@
-[CmdletBinding(PositionalBinding=$false)]
+[CmdletBinding(PositionalBinding=$true)]
 param(
-    [bool] $CreatePackages,
-    [bool] $RunTests = $true,
-    [string] $PullRequestNumber
+    [bool] $IsBuild = $true,
+    [bool] $CreatePackages = $true,
+    [bool] $RunTests = $false,
+    [string] $PullRequestNumber = $null
 )
+# ./build -IsBuild 0 -CreatePackages 1
 
 $msbuild="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe"
 if (-not (test-path $msbuild)) {
@@ -57,11 +59,13 @@ if ($PullRequestNumber) {
     $CreatePackages = $false
 }
 
-Write-Host "Building solution..." -ForegroundColor "Magenta"
-dotnet build ".\MiniProfiler.sln" /p:CI=true
-Write-Host "Done building." -ForegroundColor "Green"
+if ($IsBuild) {
+    Write-Host "Building solution..." -ForegroundColor "Magenta"
+    dotnet build ".\MiniProfiler.sln" /p:CI=true
+    Write-Host "Done building." -ForegroundColor "Green"
+}
 
-$RunTests = false  #TODO if exists "./tests/MiniProfiler.Tests"
+#   $RunTests = $false  #TODO if exists "./tests/MiniProfiler.Tests"
 if ($RunTests) {
     foreach ($project in $testsToRun) {
         Write-Host "Running tests: $project (all frameworks)" -ForegroundColor "Magenta"
@@ -87,11 +91,16 @@ if ($CreatePackages) {
 
     Write-Host "Building all packages" -ForegroundColor "Green"
 
-    foreach ($project in $projectsToBuild) {
-        Write-Host "Packing $project (dotnet pack)..." -ForegroundColor "Magenta"
-        dotnet pack ".\src\$project\$project.csproj" -c Release /p:PackageOutputPath=$packageOutputFolder /p:NoPackageAnalysis=true /p:CI=true
-        Write-Host ""
-    }
+    $v =  "4.0.55"
+    dotnet pack  src/MiniProfiler.Shared/MiniProfiler.Shared.csproj /p:PackageVersion=$v --include-source /p:PackageOutputPath=$packageOutputFolder /p:NoPackageAnalysis=true /p:CI=true
+    dotnet pack  src/MiniProfiler/MiniProfiler.csproj               /p:PackageVersion=$v --include-source /p:PackageOutputPath=$packageOutputFolder /p:NoPackageAnalysis=true /p:CI=true
+    dotnet pack  src/MiniProfiler.Mvc5/MiniProfiler.Mvc5.csproj     /p:PackageVersion=$v --include-source /p:PackageOutputPath=$packageOutputFolder /p:NoPackageAnalysis=true /p:CI=true
+
+    # foreach ($project in $projectsToBuild) {
+    #    Write-Host "Packing $project (dotnet pack)..." -ForegroundColor "Magenta"
+    #    dotnet pack ".\src\$project\$project.csproj" -c Release /p:PackageOutputPath=$packageOutputFolder /p:NoPackageAnalysis=true /p:CI=true
+    #    Write-Host ""
+    # }
 }
 
 Write-Host "Done."

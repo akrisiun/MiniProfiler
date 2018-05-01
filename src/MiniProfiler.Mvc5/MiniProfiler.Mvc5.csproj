@@ -1,11 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler.Mvc5</AssemblyName>
     <Title>MiniProfiler for MVC 5</Title>
     <Description>MiniProfiler: Extensions and helpers for ASP.NET MVC 5+ (non-.NET Core)</Description>
     <Authors>Marc Gravell, Jarrod Dixon, Yaakov Ellis, Nick Craver</Authors>
     <PackageTags>ASP.NET;MVC;MVC 5;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>net452;net461</TargetFrameworks>
+    <NoWarn>1701;1702;1705;1591;1587</NoWarn>
+    <DocumentationFile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net451|AnyCPU'">
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <RootNamespace>StackExchange.Profiling.Mvc</RootNamespace>
@@ -17,7 +21,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />

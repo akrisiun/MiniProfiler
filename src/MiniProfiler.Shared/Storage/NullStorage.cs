@@ -21,7 +21,7 @@ namespace StackExchange.Profiling.Storage
             return tcs.Task;
         }
 
-#if !NET451
+#if !NET451 && !NET452
         public static System.Threading.Tasks.Task CompletedTask => System.Threading.Tasks.Task.CompletedTask;
 #else 
         public static System.Threading.Tasks.Task CompletedTask

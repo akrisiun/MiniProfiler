@@ -19,25 +19,11 @@ gulp.task('restore', ()=>{
 
 gulp.task('build', [], ()=>{
     
-    //var pipe = gulp.src('**/*.sln', {read: false})
-    //    .pipe(build({configuration: "Debug"}));
-    var pipe = gulp.src('**/*.csproj', {read: false})
-        .pipe(restore());
+    var pipe = gulp.src('**/*.sln', {read: false})
+        .pipe(build({configuration: "Debug"}));
 
-    var calculatedArgs = ["build", "--no-dependencies", "src/MiniProfiler.Shared"];
-    // pipe = pipe.pipe(
-    cp.spawn("dotnet", calculatedArgs, options);
-    calculatedArgs = ["build", "--no-dependencies", "src/MiniProfiler"];
-
-    var calculatedArgs = ["build", "--no-dependencies", "src/MiniProfiler.Mvc5"];
-    cp.spawn("dotnet", calculatedArgs, options);
-    var calculatedArgs = ["build", "--no-dependencies", "src/MiniProfiler.EntityFrameworkCore"];
-    cp.spawn("dotnet", calculatedArgs, options);
-    var calculatedArgs = ["build", "--no-dependencies", "src/MiniProfiler.Providers.SqlServer"];
-    cp.spawn("dotnet", calculatedArgs, options);
-    
-    calculatedArgs = ["build", "--no-dependencies", "wwwroot"];
-    cp.spawn("dotnet", calculatedArgs, options);
+    var calculatedArgs = ["build"] // , "src/.csproj", "-o", PWD + "\\lib"];
+    pipe = pipe.pipe(cp.spawn("dotnet", calculatedArgs, options));
     return pipe;
 });
 
@@ -46,18 +32,16 @@ gulp.task('pack', [], ()=>{
     cp.spawn("powershell", calculatedArgs, options);
 });
 
+gulp.task('lib', [], ()=>{
+    // dotnet 
+    var calculatedArgs = ["build", "src/MiniProfiler/MiniProfiler.csproj", "-o", PWD + "\\lib"];
+    cp.spawn("dotnet", calculatedArgs, options); 
+});
+
 gulp.task('iis', [], ()=>{
 
     var calculatedArgs = ["/port:" + port, "/clr:4.0", "/systray:true", "/path:" + __dirname 
         + "\\wwwroot"];
-        
     console.log("iisexpress " + calculatedArgs);
     cp.spawn("C:\\Program Files\\IIS Express\\iisexpress.exe", calculatedArgs, options);
-});
-
-gulp.task('test', [], () => {
-    // dotnet test -v n --no-build --no-restore
-    // var calculatedArgs = ["/c", "test.cmd"];
-    var calculatedArgs = ["test", "-v", "n", "--no-build", "--no-restore"];
-    cp.spawn("dotnet", calculatedArgs, options);
 });

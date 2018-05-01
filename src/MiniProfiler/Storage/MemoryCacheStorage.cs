@@ -187,7 +187,7 @@ namespace StackExchange.Profiling.Storage
         public Task SaveAsync(MiniProfiler profiler)
         {
             Save(profiler);
-#if !NET451
+#if !NET451 && !NET452
             return Task.CompletedTask;
 #else
             return TaskEx.CompletedTask;
@@ -222,7 +222,7 @@ namespace StackExchange.Profiling.Storage
         {
             SetUnviewed(user, id);
 
-#if !NET451
+#if !NET451 && !NET452
             return Task.CompletedTask;
 #else
             return TaskEx.CompletedTask;
@@ -252,7 +252,7 @@ namespace StackExchange.Profiling.Storage
         {
             SetViewed(user, id);
 
-#if !NET451
+#if !NET451 && !NET452
             return Task.CompletedTask;
 #else
             return TaskEx.CompletedTask;

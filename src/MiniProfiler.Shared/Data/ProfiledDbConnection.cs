@@ -179,7 +179,7 @@ namespace StackExchange.Profiling.Data
         /// Enlist the transaction.
         /// </summary>
         /// <param name="transaction">The transaction.</param>
-        public override void EnlistTransaction(System.Transactions.Transaction transaction) =>_connection.EnlistTransaction(transaction);
+        // public override void EnlistTransaction(System.Transactions.Transaction transaction) =>_connection.EnlistTransaction(transaction);
 
         /// <summary>
         /// Gets the database schema.

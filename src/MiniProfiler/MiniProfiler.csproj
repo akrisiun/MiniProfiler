@@ -5,9 +5,9 @@
     <Description>Lightweight mini-profiler, designed for ASP.NET (including MVC) (non-.NET Core) websites</Description>
     <Authors>Marc Gravell, Jarrod Dixon, Yaakov Ellis, Nick Craver</Authors>
     <PackageTags>ASP.NET;SQL;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>net451;net461</TargetFrameworks>
+    <TargetFrameworks>net452;net461</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net451|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DocumentationFile />
   </PropertyGroup>
   <ItemGroup>
