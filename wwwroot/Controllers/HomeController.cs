@@ -96,8 +96,8 @@ namespace Samples.Mvc5.Controllers
 
             EFContext context = null;
             //using (var connection = new ProfiledDbConnection(new SqliteConnection("DataSource=:memory:"), MiniProfiler.Current))
-
             // dotnet\sdk\NuGetFallbackFolder\microsoft.data.sqlite.core\2.0.0\lib\netstandard2.0\Microsoft.Data.Sqlite.dll
+
             using (var connection = new SqliteConnection("DataSource=:memory:"))
             using (MiniProfiler.Current.Step("EF Core Stuff"))
             {
