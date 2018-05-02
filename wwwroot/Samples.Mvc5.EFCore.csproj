@@ -1,17 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RootNamespace>Samples.Mvc5</RootNamespace>
     <AssemblyName>Samples.Mvc5</AssemblyName>
-    <TargetFramework>net461</TargetFramework>
-    <!--<TargetFrameworks>net452;net461</TargetFrameworks>-->
+    <TargetFramework>net452</TargetFramework>
     <UseIISExpress>true</UseIISExpress>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <EnableDefaultContentItems>true</EnableDefaultContentItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
@@ -29,22 +28,6 @@
       xcopy /s /y /q "$(CscToolPath)\*.*" "roslyn"
     </PostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-    <_HasReferenceToSystemRuntime>true</_HasReferenceToSystemRuntime>
-    <UsingToolMicrosoftNetCompilers>false</UsingToolMicrosoftNetCompilers>
-
-    <RuntimeIdentifiers>win;osx.10-11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>      
-    <DefineConstants>TRACE;DEBUG;WEB;NOT_WINNT;NET451;NET461;MONO;UNIX</DefineConstants>
-    <UsingToolMicrosoftNetCompilers>true</UsingToolMicrosoftNetCompilers>
-    <ResolvedCodeAnalysisRuleSet>false</ResolvedCodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
-      <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1" Version="1.0.1" />
-      <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-      <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
-      <PackageReference Include="System.Security.Principal.Windows" Version="4.3.0" />
-      <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
-  </ItemGroup>
   <ItemGroup>
     <!-- 
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="1.0.8" />
@@ -54,7 +37,7 @@
     <ProjectReference Include="..\src\MiniProfiler.Providers.SqlServer\MiniProfiler.Providers.SqlServer.csproj" />
     <ProjectReference Include="..\src\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
     <ProjectReference Include="..\src\MiniProfiler\MiniProfiler.csproj" />
-
+    
     <!-- <ProjectReference Include="..\src\MiniProfiler.EntityFrameworkCore\MiniProfiler.EntityFrameworkCore.csproj" /> -->
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net451' OR '$(TargetFramework)' == 'net452'">
@@ -99,34 +82,8 @@
   <ItemGroup>
     <Content Include="Content\**\*" />
     <Content Include="Scripts\**\*" />
-    <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="MiniProfilerMvc5.cs" />
-    <Compile Include="Models\EFContext.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Start.cs" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\_references.js" />
-    <None Include="Content\bootstrap.css" />
-    <None Include="Content\bootstrap.min.css" />
-    <None Include="Content\Site.css" />
-    <None Include="Scripts\bootstrap.js" />
-    <None Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\_references.js" />
-    <None Include="Views\Home\About.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

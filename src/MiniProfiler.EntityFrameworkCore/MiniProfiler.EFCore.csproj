@@ -1,69 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>MiniProfiler.EntityFrameworkCore</AssemblyName>
     <Title>MiniProfiler for Entity Framework Core</Title>
     <Description>MiniProfiler: Integration for Entity Framework Core</Description>
     <Authors>Nick Craver</Authors>
     <PackageTags>Entity Framework;Entity Framework Core;$(PackageBaseTags)</PackageTags>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <!-- <TargetFrameworks>net461;netstandard2.0</TargetFrameworks> -->
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-      <AssemblyOriginatorKeyFile>..\..\miniprofiler.snk</AssemblyOriginatorKeyFile>
-      <RuntimeIdentifiers>win;win-x86;win-x64</RuntimeIdentifiers>
-      <DefineConstants>TRACE;DEBUG;WEB;WINNT;NET451;NET46</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-      <RuntimeIdentifiers>osx.10-11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>      
-      <DefineConstants>TRACE;DEBUG;WEB;NOT_WINNT;NET451;NET461;MONO;UNIX</DefineConstants>
-      <ContinueOnError>true</ContinueOnError>
-  </PropertyGroup>
-  <ItemGroup Condition="'$(OS)' != 'Windows_NT' AND '$(TargetFramework)' == 'net461'">
-    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1" Version="1.0.1" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <!--
-    <Reference Include="System.Data.Linq" /> 
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.Serialization" />
-    -->
-    <Reference Include="System.Xml" />
-  </ItemGroup>
   <PropertyGroup Label="Configuration">
     <RootNamespace>StackExchange.Profiling.Data</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.5" />
-    <!--
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
-     -->
-    <PackageReference Include="Dapper.StrongName" Version="1.50.2" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="1.1.5" />
-	<!--
+    <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />-->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.5" />
-	-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="1.1.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniProfiler.Shared\MiniProfiler.Shared.csproj" />

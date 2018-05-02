@@ -26,3 +26,4 @@ node_modules/
 yarn.lock
 *.log
 *.nupkg
+lib/
